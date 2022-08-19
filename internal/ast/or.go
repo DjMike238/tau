@@ -46,3 +46,7 @@ func (o Or) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpOr), nil
 }
+
+func (o Or) Format(prefix string) string {
+	return fmt.Sprintf("%s%s || %s", prefix, o.l.Format(""), o.r.Format(""))
+}

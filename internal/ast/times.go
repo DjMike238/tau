@@ -62,3 +62,7 @@ func (t Times) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpMul), nil
 }
+
+func (t Times) Format(prefix string) string {
+	return fmt.Sprintf("%s%s * %s", prefix, t.l.Format(""), t.r.Format(""))
+}

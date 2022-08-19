@@ -45,3 +45,7 @@ func (b Bang) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpBang), nil
 }
+
+func (b Bang) Format(prefix string) string {
+	return fmt.Sprintf("%s!%s", prefix, b.n.Format(""))
+}

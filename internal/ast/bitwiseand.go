@@ -55,3 +55,7 @@ func (b BitwiseAnd) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpBwAnd), nil
 }
+
+func (b BitwiseAnd) Format(prefix string) string {
+	return fmt.Sprintf("%s%s & %s", prefix, b.l.Format(""), b.r.Format(""))
+}

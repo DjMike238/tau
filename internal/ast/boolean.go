@@ -32,3 +32,10 @@ func (b Boolean) Compile(c *compiler.Compiler) (position int, err error) {
 		return c.Emit(code.OpFalse), nil
 	}
 }
+
+func (b Boolean) Format(_ string) string {
+	if b {
+		return "true"
+	}
+	return "false"
+}

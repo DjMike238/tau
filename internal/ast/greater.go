@@ -62,3 +62,7 @@ func (g Greater) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpGreaterThan), nil
 }
+
+func (g Greater) Format(prefix string) string {
+	return fmt.Sprintf("%s%s > %s", prefix, g.l.Format(""), g.r.Format(""))
+}

@@ -78,3 +78,7 @@ func (e Equals) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpEqual), nil
 }
+
+func (e Equals) Format(prefix string) string {
+	return fmt.Sprintf("%s%s == %s", prefix, e.l.Format(""), e.r.Format(""))
+}

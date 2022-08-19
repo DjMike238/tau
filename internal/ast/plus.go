@@ -75,3 +75,7 @@ func (p Plus) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpAdd), nil
 }
+
+func (p Plus) Format(prefix string) string {
+	return fmt.Sprintf("%s%s + %s", prefix, p.l.Format(""), p.r.Format(""))
+}

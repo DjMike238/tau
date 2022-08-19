@@ -99,3 +99,7 @@ func (i Index) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpIndex), nil
 }
+
+func (i Index) Format(prefix string) string {
+	return fmt.Sprintf("%s[%s]", i.left.Format(""), i.index.Format(""))
+}

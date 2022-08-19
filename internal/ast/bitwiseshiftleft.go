@@ -55,3 +55,7 @@ func (b BitwiseLeftShift) Compile(c *compiler.Compiler) (position int, err error
 	}
 	return c.Emit(code.OpBwLShift), nil
 }
+
+func (b BitwiseLeftShift) Format(prefix string) string {
+	return fmt.Sprintf("%s%s << %s", prefix, b.l.Format(""), b.r.Format(""))
+}

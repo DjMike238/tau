@@ -46,3 +46,7 @@ func (p PrefixMinus) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpMinus), nil
 }
+
+func (p PrefixMinus) Format(prefix string) string {
+	return fmt.Sprintf("%s-%s", prefix, p.n.Format(""))
+}

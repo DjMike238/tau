@@ -8,6 +8,7 @@ import (
 type Node interface {
 	Eval(*obj.Env) obj.Object
 	String() string
+	Format(string) string
 	compiler.Compilable
 }
 

@@ -96,3 +96,7 @@ func (i In) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpIn), nil
 }
+
+func (i In) Format(prefix string) string {
+	return fmt.Sprintf("%s%s in %s", prefix, i.l.Format(""), i.r.Format(""))
+}

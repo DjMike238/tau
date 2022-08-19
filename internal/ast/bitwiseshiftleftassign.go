@@ -53,10 +53,14 @@ func (b BitwiseShiftLeftAssign) Eval(env *obj.Env) obj.Object {
 }
 
 func (b BitwiseShiftLeftAssign) String() string {
-	return fmt.Sprintf("(%v << %v)", b.l, b.r)
+	return fmt.Sprintf("(%v <<= %v)", b.l, b.r)
 }
 
 func (b BitwiseShiftLeftAssign) Compile(c *compiler.Compiler) (position int, err error) {
 	n := Assign{b.l, BitwiseLeftShift{b.l, b.r}}
 	return n.Compile(c)
+}
+
+func (b BitwiseShiftLeftAssign) Format(prefix string) string {
+	return fmt.Sprintf("%s%s <<= %s", prefix, b.l.Format(""), b.r.Format(""))
 }

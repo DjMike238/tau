@@ -71,3 +71,13 @@ func (f Function) Compile(c *compiler.Compiler) (position int, err error) {
 	fn := obj.NewFunctionCompiled(ins, nLocals, len(f.params))
 	return c.Emit(code.OpClosure, c.AddConstant(fn), len(freeSymbols)), nil
 }
+
+func (f Function) Format(prefix string) string {
+	var params = make([]string, len(f.params))
+
+	for i, p := range f.params {
+		params[i] = p.Format("")
+	}
+
+	return fmt.Sprintf("fn(%s) {%s}", strings.Join(params, ", "), f.body.Format(prefix+"\t"))
+}

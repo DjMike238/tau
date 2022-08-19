@@ -62,3 +62,7 @@ func (m MinusMinus) Compile(c *compiler.Compiler) (position int, err error) {
 	n := Assign{m.r, Minus{m.r, Integer(1)}}
 	return n.Compile(c)
 }
+
+func (m MinusMinus) Format(prefix string) string {
+	return fmt.Sprintf("%s--%s", prefix, m.r.Format(""))
+}

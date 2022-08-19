@@ -90,3 +90,7 @@ func (f For) Compile(c *compiler.Compiler) (position int, err error) {
 
 	return endPos, nil
 }
+
+func (f For) Format(prefix string) string {
+	return fmt.Sprintf("%sfor %s {%s}", prefix, f.cond.Format(""), f.body.Format(prefix+"\t"))
+}

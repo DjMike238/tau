@@ -54,7 +54,7 @@ func (l Less) String() string {
 }
 
 func (l Less) Compile(c *compiler.Compiler) (position int, err error) {
-	// the order of the compilation of the operands is inverted because we reuse
+	// The order of the compilation of the operands is inverted because we reuse
 	// the code.OpGreaterThan OpCode.
 	if position, err = l.r.Compile(c); err != nil {
 		return
@@ -63,4 +63,8 @@ func (l Less) Compile(c *compiler.Compiler) (position int, err error) {
 		return
 	}
 	return c.Emit(code.OpGreaterThan), nil
+}
+
+func (l Less) Format(prefix string) string {
+	return fmt.Sprintf("%s%s < %s", prefix, l.l.Format(""), l.r.Format(""))
 }

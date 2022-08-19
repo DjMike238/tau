@@ -85,3 +85,24 @@ func (i IfExpr) Compile(c *compiler.Compiler) (position int, err error) {
 	c.ReplaceOperand(jumpPos, c.Pos())
 	return c.Pos(), nil
 }
+
+func (i IfExpr) Format(prefix string) string {
+	if i.altern != nil {
+		return fmt.Sprintf(
+			"%sif %s {%s%s} else {%s}",
+			prefix,
+			i.cond.Format(""),
+			i.body.Format(prefix+"\t"),
+			prefix,
+			i.altern.Format(""),
+		)
+	}
+
+	return fmt.Sprintf(
+		"%sif %s {%s%s}",
+		prefix,
+		i.cond.Format(""),
+		i.body.Format(prefix+"\t"),
+		prefix,
+	)
+}

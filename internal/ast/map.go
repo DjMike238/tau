@@ -47,10 +47,12 @@ func (m Map) Eval(env *obj.Env) obj.Object {
 }
 
 func (m Map) String() string {
-	var buf strings.Builder
-	var i = 1
+	var (
+		buf strings.Builder
+		i   = 1
+	)
 
-	buf.WriteString("{")
+	buf.WriteRune('{')
 	for k, v := range m {
 		var key, val string
 
@@ -73,7 +75,7 @@ func (m Map) String() string {
 		}
 		i += 1
 	}
-	buf.WriteString("}")
+	buf.WriteRune('}')
 	return buf.String()
 }
 
@@ -98,4 +100,47 @@ func (m Map) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 
 	return c.Emit(code.OpMap, len(m)*2), nil
+}
+
+func (m Map) Format(prefix string) string {
+	var (
+		buf strings.Builder
+		i   = 1
+	)
+
+	buf.WriteString(prefix)
+	buf.WriteRune('{')
+	for k, v := range m {
+		var key, val string
+
+		if s, ok := k.(String); ok {
+			key = s.Quoted()
+		} else {
+			key = k.Format(prefix + "\t")
+		}
+
+		if s, ok := v.(String); ok {
+			val = s.Quoted()
+		} else {
+			val = v.Format(prefix + "\t")
+		}
+
+		buf.WriteString(prefix)
+		buf.WriteRune('\t')
+		buf.WriteString(key)
+		buf.WriteString(": ")
+		buf.WriteString(val)
+
+		if i < len(m)-1 {
+			buf.WriteString(",\n")
+		} else if i == len(m)-1 {
+			buf.WriteString("\n")
+		}
+
+		i += 1
+	}
+	buf.WriteString(prefix)
+	buf.WriteRune('}')
+
+	return buf.String()
 }

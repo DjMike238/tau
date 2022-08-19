@@ -17,9 +17,13 @@ func (c Continue) Eval(_ *obj.Env) obj.Object {
 }
 
 func (c Continue) String() string {
-	return "break"
+	return "continue"
 }
 
 func (c Continue) Compile(comp *compiler.Compiler) (position int, err error) {
 	return comp.Emit(code.OpJump, compiler.ContinuePlaceholder), nil
+}
+
+func (c Continue) Format(_ string) string {
+	return "continue"
 }

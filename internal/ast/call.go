@@ -99,3 +99,13 @@ func (c Call) Compile(comp *compiler.Compiler) (position int, err error) {
 
 	return comp.Emit(code.OpCall, len(c.args)), nil
 }
+
+func (c Call) Format(prefix string) string {
+	var args = make([]string, len(c.args))
+
+	for i, a := range c.args {
+		args[i] = a.String()
+	}
+
+	return fmt.Sprintf("%s%v(%s)", prefix, c.fn, strings.Join(args, ", "))
+}

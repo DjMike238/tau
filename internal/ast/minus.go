@@ -62,3 +62,7 @@ func (m Minus) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpSub), nil
 }
+
+func (m Minus) Format(prefix string) string {
+	return fmt.Sprintf("%s%s - %s", prefix, m.l.Format(""), m.r.Format(""))
+}

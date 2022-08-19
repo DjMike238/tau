@@ -46,3 +46,7 @@ func (a And) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpAnd), nil
 }
+
+func (a And) Format(prefix string) string {
+	return fmt.Sprintf("%s%s && %s", prefix, a.l.Format(""), a.r.Format(""))
+}

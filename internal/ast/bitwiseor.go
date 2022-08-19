@@ -55,3 +55,7 @@ func (b BitwiseOr) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpBwOr), nil
 }
+
+func (b BitwiseOr) Format(prefix string) string {
+	return fmt.Sprintf("%s%s | %s", prefix, b.l.Format(""), b.r.Format(""))
+}

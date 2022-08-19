@@ -62,3 +62,7 @@ func (l LessEq) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpGreaterThanEqual), nil
 }
+
+func (l LessEq) Format(prefix string) string {
+	return fmt.Sprintf("%s%s <= %s", prefix, l.l.Format(""), l.r.Format(""))
+}

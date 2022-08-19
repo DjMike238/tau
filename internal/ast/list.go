@@ -55,3 +55,25 @@ func (l List) Compile(c *compiler.Compiler) (position int, err error) {
 	position = c.Emit(code.OpList, len(l))
 	return
 }
+
+func (l List) Format(prefix string) string {
+	var elems = make([]string, len(l))
+
+	for i, e := range l {
+		if s, ok := e.(String); ok {
+			elems[i] = s.Quoted()
+		} else {
+			elems[i] = e.Format("")
+		}
+	}
+
+	if s := strings.Join(elems, ", "); len(s) <= 78 {
+		return fmt.Sprintf("%s[%s]", prefix, s)
+	}
+
+	for i, s := range elems {
+		elems[i] = prefix + "\t" + s
+	}
+
+	return fmt.Sprintf("%s[\n%s%s]", prefix, strings.Join(elems, ",\n"), prefix)
+}

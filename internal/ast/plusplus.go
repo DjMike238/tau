@@ -62,3 +62,7 @@ func (p PlusPlus) Compile(c *compiler.Compiler) (position int, err error) {
 	n := Assign{p.r, Plus{p.r, Integer(1)}}
 	return n.Compile(c)
 }
+
+func (p PlusPlus) Format(prefix string) string {
+	return fmt.Sprintf("%s++%s", prefix, p.r.Format(""))
+}

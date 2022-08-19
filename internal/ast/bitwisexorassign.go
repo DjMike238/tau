@@ -60,3 +60,7 @@ func (b BitwiseXorAssign) Compile(c *compiler.Compiler) (position int, err error
 	n := Assign{b.l, BitwiseXor{b.l, b.r}}
 	return n.Compile(c)
 }
+
+func (b BitwiseXorAssign) Format(prefix string) string {
+	return fmt.Sprintf("%s%s ^= %s", prefix, b.l.Format(""), b.r.Format(""))
+}

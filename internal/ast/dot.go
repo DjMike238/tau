@@ -58,3 +58,7 @@ func (d Dot) Compile(c *compiler.Compiler) (position int, err error) {
 	position = c.Emit(code.OpConstant, c.AddConstant(obj.NewString(d.r.String())))
 	return c.Emit(code.OpDot), nil
 }
+
+func (d Dot) Format(prefix string) string {
+	return fmt.Sprintf("%s%s.%s", prefix, d.l.Format(""), d.r.Format(""))
+}

@@ -60,3 +60,7 @@ func (b BitwiseAndAssign) Compile(c *compiler.Compiler) (position int, err error
 	n := Assign{b.l, BitwiseAnd{b.l, b.r}}
 	return n.Compile(c)
 }
+
+func (b BitwiseAndAssign) Format(prefix string) string {
+	return fmt.Sprintf("%s%s &= %s", prefix, b.l.Format(""), b.r.Format(""))
+}

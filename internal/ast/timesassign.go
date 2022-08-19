@@ -82,3 +82,7 @@ func (t TimesAssign) Compile(c *compiler.Compiler) (position int, err error) {
 	n := Assign{t.l, Times{t.l, t.r}}
 	return n.Compile(c)
 }
+
+func (t TimesAssign) Format(prefix string) string {
+	return fmt.Sprintf("%s%s *= %s", prefix, t.l.Format(""), t.r.Format(""))
+}

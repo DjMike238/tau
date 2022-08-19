@@ -56,3 +56,7 @@ func (d Divide) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpDiv), nil
 }
+
+func (d Divide) Format(prefix string) string {
+	return fmt.Sprintf("%s%s / %s", d.l.Format(""), d.r.Format(""))
+}

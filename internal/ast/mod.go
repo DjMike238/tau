@@ -59,3 +59,7 @@ func (m Mod) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpMod), nil
 }
+
+func (m Mod) Format(prefix string) string {
+	return fmt.Sprintf("%s%s %% %s", prefix, m.l.Format(""), m.r.Format(""))
+}

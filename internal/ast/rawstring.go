@@ -1,7 +1,7 @@
 package ast
 
 import (
-	"strings"
+	"fmt"
 
 	"github.com/NicoNex/tau/internal/code"
 	"github.com/NicoNex/tau/internal/compiler"
@@ -23,14 +23,13 @@ func (r RawString) String() string {
 }
 
 func (r RawString) Quoted() string {
-	var buf strings.Builder
-
-	buf.WriteRune('`')
-	buf.WriteString(string(r))
-	buf.WriteRune('`')
-	return buf.String()
+	return fmt.Sprintf("`%s`", string(r))
 }
 
 func (r RawString) Compile(c *compiler.Compiler) (position int, err error) {
 	return c.Emit(code.OpConstant, c.AddConstant(obj.NewString(string(r)))), nil
+}
+
+func (r RawString) Format(prefix string) string {
+	return fmt.Sprintf("%s`%s`", prefix, string(r))
 }

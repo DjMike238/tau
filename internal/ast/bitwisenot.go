@@ -41,3 +41,7 @@ func (b BitwiseNot) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpBwNot), nil
 }
+
+func (b BitwiseNot) Format(prefix string) string {
+	return fmt.Sprintf("%s~%s", prefix, b.n.Format(""))
+}

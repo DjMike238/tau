@@ -101,3 +101,7 @@ func escapeRune(r rune) (rune, error) {
 		return r, fmt.Errorf(`unknown escape "\%c"`, r)
 	}
 }
+
+func (s String) Format(prefix string) string {
+	return fmt.Sprintf("%s%s", prefix, string(s))
+}

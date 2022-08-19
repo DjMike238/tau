@@ -69,3 +69,7 @@ func (a Assign) Compile(c *compiler.Compiler) (position int, err error) {
 		return 0, fmt.Errorf("cannot assign to literal")
 	}
 }
+
+func (a Assign) Format(prefix string) string {
+	return fmt.Sprintf("%s%s = %s", prefix, a.l.Format(""), a.r.Format(""))
+}

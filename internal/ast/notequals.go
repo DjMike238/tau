@@ -78,3 +78,7 @@ func (n NotEquals) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpNotEqual), nil
 }
+
+func (n NotEquals) Format(prefix string) string {
+	return fmt.Sprintf("%s%s != %s", prefix, n.l.Format(""), n.r.Format(""))
+}

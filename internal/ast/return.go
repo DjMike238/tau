@@ -30,3 +30,11 @@ func (r Return) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 	return c.Emit(code.OpReturnValue), nil
 }
+
+func (r Return) Format(prefix string) string {
+	if r.v == nil {
+		return fmt.Sprintf("%sreturn", prefix)
+	}
+
+	return fmt.Sprintf("%sreturn %s", r.v.Format(""))
+}
