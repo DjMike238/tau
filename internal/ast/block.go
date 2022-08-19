@@ -53,14 +53,10 @@ func (b Block) Compile(c *compiler.Compiler) (position int, err error) {
 }
 
 func (b Block) Format(prefix string) string {
-	var (
-		buf        strings.Builder
-		elemPrefix = prefix + "\t"
-	)
+	var buf strings.Builder
 
 	for _, n := range b {
-		buf.WriteString(prefix)
-		buf.WriteString(n.Format(elemPrefix))
+		buf.WriteString(n.Format(prefix))
 		buf.WriteRune('\n')
 	}
 

@@ -24,6 +24,6 @@ func (b Break) Compile(c *compiler.Compiler) (position int, err error) {
 	return c.Emit(code.OpJump, compiler.BreakPlaceholder), nil
 }
 
-func (b Break) Format(_ string) string {
-	return "break"
+func (b Break) Format(prefix string) string {
+	return prefix + "break"
 }

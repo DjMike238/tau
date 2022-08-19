@@ -36,5 +36,5 @@ func (r Return) Format(prefix string) string {
 		return fmt.Sprintf("%sreturn", prefix)
 	}
 
-	return fmt.Sprintf("%sreturn %s", r.v.Format(""))
+	return fmt.Sprintf("%sreturn %s", prefix, r.v.Format(prefix))
 }

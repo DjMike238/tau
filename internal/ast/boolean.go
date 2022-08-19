@@ -33,9 +33,9 @@ func (b Boolean) Compile(c *compiler.Compiler) (position int, err error) {
 	}
 }
 
-func (b Boolean) Format(_ string) string {
+func (b Boolean) Format(prefix string) string {
 	if b {
-		return "true"
+		return prefix + "true"
 	}
-	return "false"
+	return prefix + "false"
 }

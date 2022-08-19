@@ -89,18 +89,17 @@ func (i IfExpr) Compile(c *compiler.Compiler) (position int, err error) {
 func (i IfExpr) Format(prefix string) string {
 	if i.altern != nil {
 		return fmt.Sprintf(
-			"%sif %s {%s%s} else {%s}",
-			prefix,
+			"if %s {\n%s%s} else {\n%s\n%s}",
 			i.cond.Format(""),
 			i.body.Format(prefix+"\t"),
 			prefix,
-			i.altern.Format(""),
+			i.altern.Format(prefix+"\t"),
+			prefix,
 		)
 	}
 
 	return fmt.Sprintf(
-		"%sif %s {%s%s}",
-		prefix,
+		"if %s {\n%s%s}",
 		i.cond.Format(""),
 		i.body.Format(prefix+"\t"),
 		prefix,

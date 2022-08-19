@@ -26,6 +26,6 @@ func (i Integer) Compile(c *compiler.Compiler) (position int, err error) {
 	return c.Emit(code.OpConstant, c.AddConstant(obj.NewInteger(int64(i)))), nil
 }
 
-func (i Integer) Format(_ string) string {
-	return strconv.FormatInt(int64(i), 10)
+func (i Integer) Format(prefix string) string {
+	return prefix + strconv.FormatInt(int64(i), 10)
 }

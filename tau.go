@@ -166,3 +166,17 @@ func CompileFiles(files []string) error {
 
 	return nil
 }
+
+func Format(path string) {
+	b := readFile(path)
+
+	tree, errs := parser.Parse(string(b))
+	if len(errs) != 0 {
+		fmt.Printf("multiple errors while parsing %s:\n", path)
+		for _, e := range errs {
+			fmt.Println("\t", e)
+		}
+	}
+
+	fmt.Println(tree.Format(""))
+}

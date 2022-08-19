@@ -34,6 +34,6 @@ func (i Identifier) Compile(c *compiler.Compiler) (position int, err error) {
 	return 0, fmt.Errorf("undefined variable %s", string(i))
 }
 
-func (i Identifier) Format(_ string) string {
-	return string(i)
+func (i Identifier) Format(prefix string) string {
+	return prefix + string(i)
 }

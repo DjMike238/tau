@@ -24,6 +24,6 @@ func (c Continue) Compile(comp *compiler.Compiler) (position int, err error) {
 	return comp.Emit(code.OpJump, compiler.ContinuePlaceholder), nil
 }
 
-func (c Continue) Format(_ string) string {
-	return "continue"
+func (c Continue) Format(prefix string) string {
+	return prefix + "continue"
 }

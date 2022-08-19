@@ -26,6 +26,6 @@ func (f Float) Compile(c *compiler.Compiler) (position int, err error) {
 	return c.Emit(code.OpConstant, c.AddConstant(obj.NewFloat(float64(f)))), nil
 }
 
-func (f Float) Format(_ string) string {
-	return strconv.FormatFloat(float64(f), 'f', -1, 64)
+func (f Float) Format(prefix string) string {
+	return prefix + strconv.FormatFloat(float64(f), 'f', -1, 64)
 }

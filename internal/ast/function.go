@@ -79,5 +79,5 @@ func (f Function) Format(prefix string) string {
 		params[i] = p.Format("")
 	}
 
-	return fmt.Sprintf("fn(%s) {%s}", strings.Join(params, ", "), f.body.Format(prefix+"\t"))
+	return fmt.Sprintf("fn(%s) {\n%s%s}", strings.Join(params, ", "), f.body.Format(prefix+"\t"), prefix)
 }
